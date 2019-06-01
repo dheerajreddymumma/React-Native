@@ -1,0 +1,8 @@
+To install React Native Script:
+
+$ npm install -g expo-cli
+$ expo init my-app
+$ cd my-app/
+$ yarn start
+
+
