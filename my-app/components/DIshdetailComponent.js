@@ -36,6 +36,7 @@ class DishDetail extends Component {
         const dishId = this.props.navigation.getParam('dishId','');
         console.log(dishId);
         console.log('the selected dish is' + this.state.dishes[0].name);
+        console.log('Hiiiiiiiiiiiiii ' + this.props.navigation.getParam('temp',''));
         return(
             <RenderDish dish={this.state.dishes[+dishId]} />
         );
