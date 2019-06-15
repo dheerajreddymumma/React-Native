@@ -5,4 +5,8 @@ $ expo init my-app
 $ cd my-app/
 $ yarn start
 
+Json server:
+cd json\ data
+json-server --host 192.168.43.120 --watch db.json -p 3001
+
 

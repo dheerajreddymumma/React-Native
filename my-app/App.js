@@ -1,6 +1,10 @@
 import React from 'react';
 import Main from './components/MainComponents';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+const store = ConfigureStore();
 
 export default class App extends React.Component {
   render() {
@@ -10,7 +14,9 @@ export default class App extends React.Component {
     //   </View>
     // );
     return (
-      <Main />
+      <Provider store={store}>
+        <Main />
+      </Provider>
     );
   }
 }
