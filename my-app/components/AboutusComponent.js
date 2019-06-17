@@ -4,6 +4,7 @@ import { Text, View, FlatList, ScrollView } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
 
 const mapStateToProps = state => {
     return {
@@ -37,17 +38,35 @@ function RenderLeaders(props) {
         );
     };
 
-    return (
-        <Card
-        title='Corporate Leadership'
-        featuredTitle='Corporate Leadership'>
-            <FlatList 
-                data={props.leaders}
-                renderItem={renderLeader}
-                keyExtractor={item => item.id.toString()}
-            />
-        </Card>
-    );
+    if(props.leaders.isLoading) {
+        return(
+            <Card
+                title='Corporate Leadership'>
+                <Loading />
+            </Card>
+        );
+    }
+    else if (props.leaders.errMess) {
+        return(
+            <Card
+                title='Corporate Leadership'>
+                <Text>{this.props.leaders.errMess}</Text>
+            </Card>
+        );
+    }
+    else {
+        return (
+            <Card
+            title='Corporate Leadership'
+            featuredTitle='Corporate Leadership'>
+                <FlatList 
+                    data={props.leaders.leaders}
+                    renderItem={renderLeader}
+                    keyExtractor={item => item.id.toString()}
+                />
+            </Card>
+        );
+    }
 }
 
 class Aboutus extends Component {
@@ -59,7 +78,7 @@ class Aboutus extends Component {
         return(
             <ScrollView>
                 <RenderHistory />
-                <RenderLeaders leaders={this.props.leaders.leaders}/>
+                <RenderLeaders leaders={this.props.leaders}/>
             </ScrollView>
             
         );
